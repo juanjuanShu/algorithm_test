@@ -1,20 +1,20 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 using namespace std;
 
 template <typename T>
-void BinarySearch_Changed(const T a[],T seekValue,int length,int &i,int &j) {
-	//i :Ğ¡ÓÚseekValueµÄ×î´óÎ»ÖÃi
-	//j :´óÓÚseekValueµÄ×îĞ¡Î»ÖÃj
-	int  lleft ,left, rright ,right, middle;
+void BinarySearch_Changed(const T a[], T seekValue, int length, int& i, int& j) {
+	//i :å°äºseekValueçš„æœ€å¤§ä½ç½®i
+	//j :å¤§äºseekValueçš„æœ€å°ä½ç½®j
+	int  lleft, left, rright, right, middle;
 	left = lleft = 0;
 	right = rright = length - 1;
 
 	while (left <= right) {
-		 middle = left + (right - left) / 2;
+		middle = left + (right - left) / 2;
 
 		if (seekValue == a[middle]) {
-			i= j = middle;
+			i = j = middle;
 			return;
 		}
 
@@ -50,20 +50,24 @@ void BinarySearch_Changed(const T a[],T seekValue,int length,int &i,int &j) {
 * 15
 * [1,9]  mid = 5  14 <15
 * [6,9]  mid = 7  12 <15
-* [8,9]  mid = 8  
+* [8,9]  mid = 8
 * [9,9]  mid = 9  14 <15 i = 9 j = -1
 */
 
 int main() {
-	
-	int arr[] = { 1 ,3 ,5 ,6, 7 ,9 ,12 ,13 , 14 };
-	int seekValue,i,j;
-	cout << "ÊäÈëÒª²éÕÒµÄÊı" << endl;
-	cin >> seekValue;
 
-	int length = sizeof(arr) / sizeof(arr[0]);
-	BinarySearch_Changed(arr, seekValue, length,i,j);
-	cout << i << " " << j << endl;
+	double arr[] = { 1 ,3 ,5 ,6, 7 ,9 ,12 ,13 , 14 };
+	double seekValue;
+	int i, j;
+
+	cout << "è¾“å…¥è¦æŸ¥æ‰¾çš„æ•°" << endl;
+	while (cin >> seekValue) {
+		cout << seekValue << endl;
+		int length = sizeof(arr) / sizeof(arr[0]);
+		BinarySearch_Changed(arr, seekValue, length, i, j);
+		cout << i << " " << j << endl;
+	}
+	
 	return 0;
 }
 
