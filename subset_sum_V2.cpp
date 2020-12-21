@@ -28,7 +28,7 @@ void show() {
 }
 
 
-void backTrack(int t,int sum) {
+void backTrack(int t, int sum) {
 	if (t > set_num || sum + suffix_sum[t] < given_num) {
 		return;
 	}
@@ -37,18 +37,15 @@ void backTrack(int t,int sum) {
 		show();
 		return;
 	}
-	
+
 	//子集树两种情况
 	res[t] = 1;
-	if(sum + itemSet[t] <= given_num && sum + suffix_sum[t] >= given_num)
+	//约束函数和限界函数
+	if (sum + itemSet[t] <= given_num && sum + suffix_sum[t] >= given_num)
 		backTrack(t + 1, sum + itemSet[t]);
-	if (sum + itemSet[t] > given_num) {
-		res[t] = 0;
-		backTrack(t + 1, sum);
-	}
 
 	res[t] = 0;
-	backTrack(t + 1,sum);
+	backTrack(t + 1, sum);
 }
 int main() {
 	int tmp;
@@ -69,7 +66,7 @@ int main() {
 		suffix_sum[i] = itemSet[i] + suffix_sum[i + 1];
 	}
 
-	backTrack(0,0);
-	
+	backTrack(0, 0);
+
 	return 0;
 }
