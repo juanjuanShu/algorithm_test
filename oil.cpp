@@ -18,28 +18,24 @@ using namespace std;
 * 每停一次，则加满油，num++
 */
 
-int oil(vector<double> arr_distance, int distance_after_oil) {
+int oil(vector<double> arr_distance, int oil_after_distance) {
 	int num = 0;
 
 	for (int i = 0, s = 0; i < arr_distance.size(); i++) {
-		//无解
-		if (distance_after_oil < arr_distance[i]) {
-			cout << "No solution" << endl;
+		if (arr_distance[i] > oil_after_distance) {
+			cout << "No Solution" << endl;
 			return 0;
 		}
 
-		//到达一个站，已经走的距离（耗油） + 这个站到下一站的距离（耗油），加满油能否支持到下一站
-		//如果能，那么停的次数加1，并且 s = 当前站到下一站的距离（到下一站前要耗的油）
 		s += arr_distance[i];
-		if (s > distance_after_oil) {
+		//到达一个站，已经走的距离（耗油） + 这个站到下一站的距离（耗油），加满油能否支持到下一站
+		//如果不够 那么需要加油，停的次数加1,并且加满油之后还要走 arr_distance[i]的距离，所以 arr_distance[i]赋值给s
+		if (s > oil_after_distance) {
 			num++;
 			s = arr_distance[i];
 		}
 	}
-
-	return num;
 }
-
 
 int main() {
 	int distance_after_oil, oil_station_nums;
